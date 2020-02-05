@@ -1,67 +1,48 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_about/utils/images_utils.dart';
+import 'package:flutter_about/ui/page/welfares.dart';
+import 'package:flutter_about/utils/logger.dart';
 import 'package:package_info/package_info.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import 'ui/page/about.dart';
 
 void main() async {
   mPackageInfo = await PackageInfo.fromPlatform();
-  runApp(App());
+  runApp(App(
+    routeName: window.defaultRouteName,
+  ));
 }
 
 PackageInfo mPackageInfo;
 
 class App extends StatelessWidget {
+  final String routeName;
+
+  App({Key key, this.routeName}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: mPackageInfo?.appName ?? "WanAndroid",
-      home: AboutPage(),
-    );
+    logger.d("routeName is:$routeName");
+    return RefreshConfiguration(
+        headerBuilder: () => MaterialClassicHeader(),
+        child: MaterialApp(
+          title: mPackageInfo?.appName ?? "WanAndroid",
+          theme: ThemeData(
+            primaryColor: Color(0xff008577),
+            primaryColorDark: Color(0xff00574B),
+            accentColor: Color(0xffD81B60),
+          ),
+          home: AboutPage(),
+          initialRoute: routeName,
+          routes: routes,
+        ));
   }
-
-
 }
 
-class AboutPage extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: (){
-            Navigator.maybePop(context);
-          },
-        ),
-        title: Text("关于"),
-      ),
-      body: _createBody(),
-    );
-  }
-
-  Widget _createBody() {
-    return ConstrainedBox(
-      constraints: BoxConstraints(minWidth: double.infinity),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-            width: 10,
-            height: 72,
-          ),
-          ImageHelper.fromAssets(
-            "lvxiaomao.jpg",
-            width: 72,
-            height: 85,
-            fit: BoxFit.cover,
-          ),
-          Text(mPackageInfo?.appName),
-          Text(mPackageInfo?.version)
-        ],
-      ),
-    );
-  }
-
-}
-
-
+///应用页面路由
+final Map<String, WidgetBuilder> routes = {
+  "/about": (context) => AboutPage(),
+  "/welfare": (context) => WelfarePage(),
+};
