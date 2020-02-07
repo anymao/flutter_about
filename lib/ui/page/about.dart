@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_about/resource/app_colors.dart';
 import 'package:flutter_about/utils/images_utils.dart';
 
 import '../../main.dart';
@@ -12,7 +13,6 @@ class AboutPage extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () {
-//            Navigator.maybePop(context);
             SystemNavigator.pop();
           },
         ),
@@ -23,24 +23,44 @@ class AboutPage extends StatelessWidget {
   }
 
   Widget _createBody() {
-    return ConstrainedBox(
-      constraints: BoxConstraints(minWidth: double.infinity),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          SizedBox(
-            width: 10,
-            height: 72,
-          ),
-          ImageHelper.fromAssets(
-            "lvxiaomao.jpg",
-            width: 72,
-            height: 85,
-            fit: BoxFit.cover,
-          ),
-          Text(mPackageInfo?.appName),
-          Text(mPackageInfo?.version)
-        ],
+    return SingleChildScrollView(
+      child: ConstrainedBox(
+        constraints: BoxConstraints(minWidth: double.infinity),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            SizedBox(
+              width: 10,
+              height: 72,
+            ),
+            ImageHelper.fromAssets(
+              "lvxiaomao.jpg",
+              width: 72,
+              height: 85,
+              fit: BoxFit.cover,
+            ),
+            SizedBox(
+              width: 10,
+              height: 72,
+            ),
+            Text(
+              mPackageInfo?.appName,
+              style: TextStyle(
+                color: AppColors.colorText2,
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(
+              width: 10,
+              height: 72,
+            ),
+            Text(mPackageInfo?.version,
+                style: TextStyle(
+                  color: AppColors.colorText2,
+                  fontSize: 18,
+                ))
+          ],
+        ),
       ),
     );
   }
