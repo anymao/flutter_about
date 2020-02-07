@@ -16,14 +16,14 @@ class WelfarePic {
 
   WelfarePic(
       {this.sId,
-        this.createdAt,
-        this.desc,
-        this.publishedAt,
-        this.source,
-        this.type,
-        this.url,
-        this.used,
-        this.who});
+      this.createdAt,
+      this.desc,
+      this.publishedAt,
+      this.source,
+      this.type,
+      this.url,
+      this.used,
+      this.who});
 
   WelfarePic.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
@@ -51,4 +51,3 @@ class WelfarePic {
     return data;
   }
 }
-

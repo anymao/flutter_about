@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_about/contants/api_contants.dart';
 import 'package:flutter_about/resource/app_colors.dart';
+import 'package:flutter_about/resource/strings.dart';
 import 'package:flutter_about/utils/images_utils.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../main.dart';
 
@@ -41,27 +44,49 @@ class AboutPage extends StatelessWidget {
             ),
             SizedBox(
               width: 10,
-              height: 72,
+              height: 24,
             ),
             Text(
               mPackageInfo?.appName,
               style: TextStyle(
-                color: AppColors.colorText2,
-                fontSize: 18,
-              ),
+                  color: AppColors.colorText2,
+                  fontSize: 18,
+                  fontStyle: FontStyle.italic,
+                  fontWeight: FontWeight.w700),
             ),
             SizedBox(
               width: 10,
-              height: 72,
+              height: 16,
             ),
-            Text(mPackageInfo?.version,
+            Text("版本号:${mPackageInfo?.version}",
                 style: TextStyle(
                   color: AppColors.colorText2,
                   fontSize: 18,
-                ))
+                )),
+            SizedBox(
+              width: 10,
+              height: 16,
+            ),
+            Text("    ${Strings.readme}"),
+            GestureDetector(
+              child: Text(
+                "Github：${ApiConstants.gitRepositoryUrl}",
+                style: TextStyle(decoration: TextDecoration.underline),
+              ),
+              onTap: () {
+                _launchUrl(ApiConstants.gitRepositoryUrl);
+              },
+            )
           ],
         ),
       ),
     );
+  }
+
+  void _launchUrl(String url) async {
+    final result = await canLaunch(url);
+    if (result) {
+      await launch(url);
+    }
   }
 }

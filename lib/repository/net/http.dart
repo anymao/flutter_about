@@ -9,7 +9,6 @@ import 'package:dio_http_cache/dio_http_cache.dart';
 import 'package:flutter_about/contants/api_contants.dart';
 import 'package:flutter_about/utils/logger.dart';
 
-
 final Dio gankDio = DioManager.get(ApiConstants.gankBaseUrl);
 
 class DioManager {
@@ -38,15 +37,15 @@ class DioManager {
     //设置接收数据超时
     options.receiveTimeout = 10000;
 //    if(baseUrl == ApiConstants.wanAndroidBaseUrl){
-      options.contentType = "application/x-www-form-urlencoded";
+    options.contentType = "application/x-www-form-urlencoded";
 //    }
     options.responseType = ResponseType.json;
     final Dio dio = Dio(options);
     //设置Cookie保存
-    dio.interceptors.add(
-        CookieManager(DefaultCookieJar()));
+    dio.interceptors.add(CookieManager(DefaultCookieJar()));
 
-    dio.interceptors.add(DioCacheManager(CacheConfig(baseUrl: baseUrl)).interceptor);
+    dio.interceptors
+        .add(DioCacheManager(CacheConfig(baseUrl: baseUrl)).interceptor);
 
     //http 日志日志打印
     dio.interceptors.add(LogInterceptor(

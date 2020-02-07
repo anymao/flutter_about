@@ -5,4 +5,6 @@ class ApiConstants {
   static const String gankBaseUrl = "http://gank.io/api";
 
   static String getWelfarePictures(int page) => "/data/福利/30/$page";
+
+  static String gitRepositoryUrl = "https://github.com/anymao/Andkit";
 }
