@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_about/model/beans.dart';
+import 'package:flutter_about/utils/images_utils.dart';
 
 class WelfarePicture extends StatelessWidget {
   final WelfarePic _pic;
@@ -15,6 +16,10 @@ class WelfarePicture extends StatelessWidget {
       child: CachedNetworkImage(
         imageUrl: _pic.url,
         fit: BoxFit.cover,
+        errorWidget: (context, url, error) {
+          return ImageHelper.fromAssets("ic_not_found.jpg",
+              width: 180, height: 360);
+        },
       ),
     );
   }
