@@ -30,9 +30,9 @@ class App extends StatelessWidget {
         child: MaterialApp(
           title: mPackageInfo?.appName ?? "WanAndroid",
           theme: ThemeData(
-            primaryColor: Color(0xff008577),
-            primaryColorDark: Color(0xff00574B),
-            accentColor: Color(0xffD81B60),
+            primaryColor: Color(0xFF529AFC),
+            primaryColorDark: Color(0xFF529AFC),
+            accentColor: Color(0xFF529AFC),
           ),
           home: AboutPage(),
           initialRoute: routeName,
