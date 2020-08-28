@@ -74,7 +74,7 @@ class AboutPage extends StatelessWidget {
                 style: TextStyle(decoration: TextDecoration.underline),
               ),
               onTap: () {
-                _launchUrl(ApiConstants.gitRepositoryUrl);
+                _launchUrl(ApiConstants.navigateByWanAndroid(ApiConstants.gitRepositoryUrl));
               },
             )
           ],

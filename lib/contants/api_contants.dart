@@ -6,5 +6,7 @@ class ApiConstants {
 
   static String getWelfarePictures(int page) => "/data/福利/30/$page";
 
+  static String navigateByWanAndroid(String url) =>"wanandroid://web/navigate?url=$url";
+
   static String gitRepositoryUrl = "https://github.com/anymao/Andkit";
 }
