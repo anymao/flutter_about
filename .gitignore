@@ -40,6 +40,6 @@ build/
 .ios/
 .flutter-plugins
 /.flutter-plugins-dependencies
-/.gradle/
 /local.properties
+/.gradle/
 /flutter_about.iml

@@ -19,7 +19,7 @@ class WelfarePage extends StatelessWidget {
             SystemNavigator.pop();
           },
         ),
-        title: Text("妹子"),
+        title: Text("一些图片"),
       ),
       body: _WelfarePicList(),
     );
